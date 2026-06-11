@@ -64,6 +64,7 @@ def get_collection(collection_name="edgar_chunks"):
 
 # --- BM25 helpers ---
 
+
 def tokenize(text):
     """Lowercase, split, and stem."""
     words = text.lower().split()
@@ -119,20 +120,25 @@ def bm25_search(query, documents, tokenized_docs, avg_dl, df_map, top_k=10):
 
 # --- Hybrid search with RRF ---
 
-def reciprocal_rank_fusion(rankings, k=60):
+
+def reciprocal_rank_fusion(rankings, weights=None, k=60):
     """
     Combine multiple ranked lists using Reciprocal Rank Fusion.
     Each ranking is a list of doc IDs ordered by relevance.
+    Weights control relative importance of each ranking (default: equal).
     """
+    if weights is None:
+        weights = [1.0] * len(rankings)
+
     fused_scores = {}
-    for ranking in rankings:
+    for ranking, weight in zip(rankings, weights):
         for rank, doc_id in enumerate(ranking):
-            fused_scores[doc_id] = fused_scores.get(doc_id, 0) + 1.0 / (k + rank + 1)
+            fused_scores[doc_id] = fused_scores.get(doc_id, 0) + weight / (k + rank + 1)
 
     return sorted(fused_scores.keys(), key=lambda x: fused_scores[x], reverse=True)
 
 
-def retrieve_context(query, collection, model, chunks, bm25_data, top_k=5):
+def retrieve_context(query, collection, model, chunks, bm25_data, top_k=5, weights=None):
     """
     Hybrid retrieval: vector search (ChromaDB) + BM25, combined with RRF.
     Returns a list of dicts with chunk_text and section.
@@ -148,22 +154,28 @@ def retrieve_context(query, collection, model, chunks, bm25_data, top_k=5):
     # BM25 search
     tokenized_docs, avg_dl, df_map = bm25_data
     documents = [c["chunk_text"] for c in chunks]
-    bm25_results = bm25_search(query, documents, tokenized_docs, avg_dl, df_map, top_k=top_k * 2)
+    bm25_results = bm25_search(
+        query, documents, tokenized_docs, avg_dl, df_map, top_k=top_k * 2
+    )
     bm25_ranking = [idx for idx, score in bm25_results]
 
-    # Combine with RRF
-    fused = reciprocal_rank_fusion([vector_ranking, bm25_ranking])
+    # Combine with RRF (weights: [vector_weight, bm25_weight])
+    fused = reciprocal_rank_fusion([vector_ranking, bm25_ranking], weights=weights)
     top_ids = fused[:top_k]
 
     # Fetch the actual documents
-    results = collection.get(ids=[str(i) for i in top_ids], include=["documents", "metadatas"])
+    results = collection.get(
+        ids=[str(i) for i in top_ids], include=["documents", "metadatas"]
+    )
 
     context_chunks = []
     for i in range(len(results["ids"])):
-        context_chunks.append({
-            "chunk_text": results["documents"][i],
-            "section": results["metadatas"][i]["section"],
-        })
+        context_chunks.append(
+            {
+                "chunk_text": results["documents"][i],
+                "section": results["metadatas"][i]["section"],
+            }
+        )
 
     return context_chunks
 
@@ -186,7 +198,10 @@ if __name__ == "__main__":
     model = SentenceTransformer(EMBEDDING_MODEL_NAME)
     results = retrieve_context(
         "What was AIG's total revenue in 2020?",
-        collection, model, chunks, bm25_data,
+        collection,
+        model,
+        chunks,
+        bm25_data,
     )
 
     print(f"\nTop {len(results)} results (hybrid search):")

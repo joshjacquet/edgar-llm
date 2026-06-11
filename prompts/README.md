@@ -1,1 +1,0 @@
-Prompts to be read in for extracting variables

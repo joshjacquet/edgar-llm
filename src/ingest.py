@@ -123,13 +123,15 @@ if __name__ == "__main__":
             continue
         print(f"Splitting {section}...")
         for chunk in splitter.split_text(text):
-            rows.append({
-                "cik": raw["cik"].iloc[0],
-                "filename": raw["filename"].iloc[0],
-                "year": raw["year"].iloc[0],
-                "section": section,
-                "chunk_text": chunk,
-            })
+            rows.append(
+                {
+                    "cik": raw["cik"].iloc[0],
+                    "filename": raw["filename"].iloc[0],
+                    "year": raw["year"].iloc[0],
+                    "section": section,
+                    "chunk_text": chunk,
+                }
+            )
 
     combined = pd.DataFrame(rows)
 
@@ -140,5 +142,7 @@ if __name__ == "__main__":
     embeddings = model.encode(texts)
     combined["embeddings"] = [emb.tolist() for emb in embeddings]
 
-    combined.to_json(os.path.join(OUTPUT_PATH, "embedded_chunks.json"), orient="records", indent=2)
+    combined.to_json(
+        os.path.join(OUTPUT_PATH, "embedded_chunks.json"), orient="records", indent=2
+    )
     print(f"Wrote {len(combined)} chunks to {OUTPUT_PATH}/embedded_chunks.json")
