@@ -18,5 +18,5 @@ TARGET_VARIABLES = {
 }
 
 # Target 10-K
-CIK = "5272" # AIG
+CIK = "5272"  # AIG
 YEAR = "2020"

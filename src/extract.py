@@ -9,7 +9,11 @@ from sentence_transformers import SentenceTransformer
 from retrieval import retrieve_context, get_collection, build_bm25_index
 from models import ExtractedValue
 from constants import (
-    LLM_MODEL_NAME, EMBEDDING_MODEL_NAME, OUTPUT_PATH, GROUND_TRUTH_PATH, PROMPTS_PATH
+    LLM_MODEL_NAME,
+    EMBEDDING_MODEL_NAME,
+    OUTPUT_PATH,
+    GROUND_TRUTH_PATH,
+    PROMPTS_PATH,
 )
 
 # GOAL: Use retrieved context + LLM to extract target variable values
@@ -71,7 +75,9 @@ def run_extraction(ground_truth_path=GROUND_TRUTH_PATH):
         query = row["query"]
         print(f"  Extracting: {query}")
 
-        context_chunks = retrieve_context(query, collection, embed_model, chunks, bm25_data, top_k=10)
+        context_chunks = retrieve_context(
+            query, collection, embed_model, chunks, bm25_data, top_k=10
+        )
         extracted = extract_value(query, context_chunks, tokenizer, llm)
 
         result = ExtractedValue(

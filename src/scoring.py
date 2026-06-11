@@ -80,13 +80,15 @@ def score_results(results_path):
         else:
             score = score_categorical(expected, extracted)
 
-        scores.append({
-            "query": result["query"],
-            "variable": variable,
-            "expected": expected,
-            "extracted": extracted,
-            "score": score,
-        })
+        scores.append(
+            {
+                "query": result["query"],
+                "variable": variable,
+                "expected": expected,
+                "extracted": extracted,
+                "score": score,
+            }
+        )
 
     total = len(scores)
     avg_score = sum(s["score"] for s in scores) / total if total > 0 else 0
@@ -107,8 +109,12 @@ if __name__ == "__main__":
     print()
 
     for s in summary["scores"]:
-        status = "PASS" if s["score"] == 1.0 else "PARTIAL" if s["score"] > 0 else "FAIL"
-        print(f"  [{status}] {s['variable']}: expected={s['expected']} | extracted={s['extracted']}")
+        status = (
+            "PASS" if s["score"] == 1.0 else "PARTIAL" if s["score"] > 0 else "FAIL"
+        )
+        print(
+            f"  [{status}] {s['variable']}: expected={s['expected']} | extracted={s['extracted']}"
+        )
 
     # Write scoring output
     output_path = os.path.join(OUTPUT_PATH, "scoring_results.json")

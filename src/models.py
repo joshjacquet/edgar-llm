@@ -5,6 +5,7 @@ from pydantic import BaseModel
 
 class ExtractedValue(BaseModel):
     """Represents a single extracted value from the RAG pipeline."""
+
     query: str
     variable: str
     expected_value: str
