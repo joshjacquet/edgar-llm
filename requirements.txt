@@ -1,0 +1,7 @@
+pyspark == 4.1.2
+datasets < 3 # for use with older dataset
+transformers == 5.10.2
+ruff == 0.15.16
+sentence-transformers == 5.5.1
+pydantic == 2.13.4
+langchain
