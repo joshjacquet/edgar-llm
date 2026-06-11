@@ -8,6 +8,7 @@ OUTPUT_PATH = os.path.join(BASE_DIR, "data", "output")
 
 # Model Choices
 EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+EMBEDDING_MODEL_NAME = "Qwen/Qwen3-Embedding-0.6B"
 LLM_MODEL_NAME = "google/flan-t5-base"
 
 # Target variables info

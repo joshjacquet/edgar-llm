@@ -2,8 +2,9 @@
 Exploration, processing, retrieval, and extraction of public IEDGAR SEC filings
 
 # Directories
-- `src\`
 - `data\`
+- `prompts\`
+- `src\`
 - `test\`
 
 # Files
