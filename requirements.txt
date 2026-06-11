@@ -4,4 +4,6 @@ transformers == 5.10.2
 ruff == 0.15.16
 sentence-transformers == 5.5.1
 pydantic == 2.13.4
-langchain
+langchain-text-splitters == 1.1.2
+chromadb == 1.5.9
+snowballstemmer
