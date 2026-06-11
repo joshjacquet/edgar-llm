@@ -18,7 +18,7 @@
       "query": "What were AIG's consolidated revenues in 2020?",
       "variable": "Total Revenues",
       "expected": "49,746",
-      "extracted": "$ 13,090",
+      "extracted": "13,090",
       "score": 0.0
     },
     {
@@ -39,7 +39,7 @@
       "query": "What was AIG's net income or net loss in 2020?",
       "variable": "Net Income",
       "expected": "-5,973",
-      "extracted": "Net income (Loss) Attributable To AIG Common Shareholders (in millions)",
+      "extracted": "Net Income (Loss) Attributable To AIG Common Shareholders (in millions)",
       "score": 0.0
     },
     {
@@ -53,7 +53,7 @@
       "query": "What was AIG's income or loss from continuing operations in 2020?",
       "variable": "Net Income",
       "expected": "-5,833",
-      "extracted": "5,833",
+      "extracted": "income (loss) from continuing operations $ (6.88) $ 3.74 $ 0.04",
       "score": 0.0
     },
     {

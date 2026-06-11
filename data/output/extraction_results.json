@@ -4,7 +4,7 @@
     "variable": "Total Revenues",
     "expected_value": "49,746",
     "extracted_value": "13,090",
-    "section": "section_15"
+    "section": "section_7"
   },
   {
     "query": "How much total revenue did AIG report for the year ended December 31, 2020?",
@@ -17,8 +17,8 @@
     "query": "What were AIG's consolidated revenues in 2020?",
     "variable": "Total Revenues",
     "expected_value": "49,746",
-    "extracted_value": "$ 13,090",
-    "section": "section_15"
+    "extracted_value": "13,090",
+    "section": "section_7"
   },
   {
     "query": "What was AIG's General Insurance net investment income in 2020?",
@@ -38,7 +38,7 @@
     "query": "What was AIG's net income or net loss in 2020?",
     "variable": "Net Income",
     "expected_value": "-5,973",
-    "extracted_value": "Net income (Loss) Attributable To AIG Common Shareholders (in millions)",
+    "extracted_value": "Net Income (Loss) Attributable To AIG Common Shareholders (in millions)",
     "section": "section_7"
   },
   {
@@ -52,7 +52,7 @@
     "query": "What was AIG's income or loss from continuing operations in 2020?",
     "variable": "Net Income",
     "expected_value": "-5,833",
-    "extracted_value": "5,833",
+    "extracted_value": "income (loss) from continuing operations $ (6.88) $ 3.74 $ 0.04",
     "section": "section_7"
   },
   {
@@ -88,7 +88,7 @@
     "variable": "Stock Exchange",
     "expected_value": "New York Stock Exchange",
     "extracted_value": "New York Stock Exchange",
-    "section": "section_15"
+    "section": "section_1A"
   },
   {
     "query": "What exchange is AIG Common Stock traded on?",
@@ -102,6 +102,6 @@
     "variable": "Stock Exchange",
     "expected_value": "New York Stock Exchange",
     "extracted_value": "New York Stock Exchange",
-    "section": "section_5"
+    "section": "section_1A"
   }
 ]
