@@ -1,0 +1,107 @@
+[
+  {
+    "query": "What was AIG's total revenue in 2020?",
+    "variable": "Total Revenues",
+    "expected_value": "49,746",
+    "extracted_value": "13,090",
+    "section": "section_15"
+  },
+  {
+    "query": "How much total revenue did AIG report for the year ended December 31, 2020?",
+    "variable": "Total Revenues",
+    "expected_value": "49,746",
+    "extracted_value": "$ 13,090",
+    "section": "section_15"
+  },
+  {
+    "query": "What were AIG's consolidated revenues in 2020?",
+    "variable": "Total Revenues",
+    "expected_value": "49,746",
+    "extracted_value": "$ 13,090",
+    "section": "section_15"
+  },
+  {
+    "query": "What was AIG's General Insurance net investment income in 2020?",
+    "variable": "Total Revenues",
+    "expected_value": "2,925",
+    "extracted_value": "2,925",
+    "section": "section_7"
+  },
+  {
+    "query": "What was AIG's adjusted pre-tax income in 2020?",
+    "variable": "Total Revenues",
+    "expected_value": "3,003",
+    "extracted_value": "Adjusted Pre-Tax Income* (in millions)",
+    "section": "section_7"
+  },
+  {
+    "query": "What was AIG's net income or net loss in 2020?",
+    "variable": "Net Income",
+    "expected_value": "-5,973",
+    "extracted_value": "Net income (Loss) Attributable To AIG Common Shareholders (in millions)",
+    "section": "section_7"
+  },
+  {
+    "query": "What was AIG's net loss attributable to common shareholders in 2020?",
+    "variable": "Net Income",
+    "expected_value": "-5,973",
+    "extracted_value": "net loss attributable to AIG common shareholders in 2020",
+    "section": "section_7"
+  },
+  {
+    "query": "What was AIG's income or loss from continuing operations in 2020?",
+    "variable": "Net Income",
+    "expected_value": "-5,833",
+    "extracted_value": "5,833",
+    "section": "section_7"
+  },
+  {
+    "query": "What was AIG's General Insurance adjusted pre-tax income in 2020?",
+    "variable": "Net Income",
+    "expected_value": "1,901",
+    "extracted_value": "1,901 $ 3,533",
+    "section": "section_15"
+  },
+  {
+    "query": "What was AIG's Life and Retirement adjusted pre-tax income in 2020?",
+    "variable": "Net Income",
+    "expected_value": "3,531",
+    "extracted_value": "$ 1,901 $ 3,533 $",
+    "section": "section_7"
+  },
+  {
+    "query": "What stock exchange is AIG listed on?",
+    "variable": "Stock Exchange",
+    "expected_value": "New York Stock Exchange",
+    "extracted_value": "New York Stock Exchange",
+    "section": "section_1A"
+  },
+  {
+    "query": "On which exchange does AIG common stock trade?",
+    "variable": "Stock Exchange",
+    "expected_value": "New York Stock Exchange",
+    "extracted_value": "New York Stock Exchange",
+    "section": "section_1A"
+  },
+  {
+    "query": "Where is AIG's stock listed?",
+    "variable": "Stock Exchange",
+    "expected_value": "New York Stock Exchange",
+    "extracted_value": "New York Stock Exchange",
+    "section": "section_15"
+  },
+  {
+    "query": "What exchange is AIG Common Stock traded on?",
+    "variable": "Stock Exchange",
+    "expected_value": "New York Stock Exchange",
+    "extracted_value": "New York Stock Exchange",
+    "section": "section_1A"
+  },
+  {
+    "query": "Which stock exchange lists AIG shares?",
+    "variable": "Stock Exchange",
+    "expected_value": "New York Stock Exchange",
+    "extracted_value": "New York Stock Exchange",
+    "section": "section_5"
+  }
+]
