@@ -8,7 +8,7 @@ from pyspark.sql.functions import col, udf, explode, lit
 from pyspark.sql.types import ArrayType, StringType
 from sentence_transformers import SentenceTransformer
 from config import get_spark_session
-from constants import EMBEDDING_MODEL_NAME, CIK, YEAR
+from constants import EMBEDDING_MODEL_NAME, CIK, YEAR, OUTPUT_PATH
 
 
 def fetch_target_10k(
@@ -105,7 +105,40 @@ def generate_embeddings(
 
 
 if __name__ == "__main__":
+    import pandas as pd
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+    # Fetch 10-K and collect to driver
     df = fetch_target_10k()
-    df_split = split_10k_sections(df, sections=["section_1"])
-    df_embedded = generate_embeddings(df_split, "chunk_text")
-    print(df_embedded.head(5))
+    raw = df.toPandas()
+
+    # Split each section into chunks on the driver (Spark workers are unreliable locally)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+    sections = [c for c in raw.columns if c.startswith("section_")]
+
+    rows = []
+    for section in sections:
+        text = raw[section].iloc[0]
+        if not text:
+            continue
+        print(f"Splitting {section}...")
+        for chunk in splitter.split_text(text):
+            rows.append({
+                "cik": raw["cik"].iloc[0],
+                "filename": raw["filename"].iloc[0],
+                "year": raw["year"].iloc[0],
+                "section": section,
+                "chunk_text": chunk,
+            })
+
+    combined = pd.DataFrame(rows)
+
+    # Generate embeddings in one pass
+    print(f"Generating embeddings for {len(combined)} chunks...")
+    model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+    texts = combined["chunk_text"].fillna("").tolist()
+    embeddings = model.encode(texts)
+    combined["embeddings"] = [emb.tolist() for emb in embeddings]
+
+    combined.to_json(os.path.join(OUTPUT_PATH, "embedded_chunks.json"), orient="records", indent=2)
+    print(f"Wrote {len(combined)} chunks to {OUTPUT_PATH}/embedded_chunks.json")
