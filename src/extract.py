@@ -14,6 +14,7 @@ from constants import (
     OUTPUT_PATH,
     GROUND_TRUTH_PATH,
     PROMPTS_PATH,
+    TARGET_VARIABLES,
 )
 
 # GOAL: Use retrieved context + LLM to extract target variable values
@@ -26,7 +27,14 @@ def load_llm(model_name=LLM_MODEL_NAME):
     return tokenizer, model
 
 
-def extract_value(query, context_chunks, tokenizer, model):
+def check_type(variable: str):
+    if variable in TARGET_VARIABLES["numeric"]:
+        return "numeric"
+    else:
+        return "string"
+
+
+def extract_value(query, type, context_chunks, tokenizer, model):
     """
     Given a query and retrieved context chunks, use flan-t5 to extract the answer.
     """
@@ -37,7 +45,7 @@ def extract_value(query, context_chunks, tokenizer, model):
     with open(os.path.join(PROMPTS_PATH, "extract.md"), "r") as f:
         prompt_template = f.read()
 
-    prompt = prompt_template.format(context=context, query=query)
+    prompt = prompt_template.format(context=context, query=query, type=type)
 
     inputs = tokenizer(prompt, return_tensors="pt", max_length=2048, truncation=True)
     outputs = model.generate(**inputs, max_new_tokens=32)
@@ -73,12 +81,13 @@ def run_extraction(ground_truth_path=GROUND_TRUTH_PATH):
     results = []
     for row in ground_truth:
         query = row["query"]
+        type = check_type(row["variable"])
         print(f"  Extracting: {query}")
 
         context_chunks = retrieve_context(
             query, collection, embed_model, chunks, bm25_data, top_k=10
         )
-        extracted = extract_value(query, context_chunks, tokenizer, llm)
+        extracted = extract_value(query, type, context_chunks, tokenizer, llm)
 
         result = ExtractedValue(
             query=query,

@@ -11,7 +11,7 @@
       "query": "How much total revenue did AIG report for the year ended December 31, 2020?",
       "variable": "Total Revenues",
       "expected": "49,746",
-      "extracted": "$ 13,090",
+      "extracted": "13,090",
       "score": 0.0
     },
     {
@@ -32,28 +32,28 @@
       "query": "What was AIG's adjusted pre-tax income in 2020?",
       "variable": "Total Revenues",
       "expected": "3,003",
-      "extracted": "Adjusted Pre-Tax Income* (in millions)",
+      "extracted": "1,234",
       "score": 0.0
     },
     {
       "query": "What was AIG's net income or net loss in 2020?",
       "variable": "Net Income",
       "expected": "-5,973",
-      "extracted": "Net Income (Loss) Attributable To AIG Common Shareholders (in millions)",
+      "extracted": "-1,234",
       "score": 0.0
     },
     {
       "query": "What was AIG's net loss attributable to common shareholders in 2020?",
       "variable": "Net Income",
       "expected": "-5,973",
-      "extracted": "net loss attributable to AIG common shareholders in 2020",
+      "extracted": "6,88",
       "score": 0.0
     },
     {
       "query": "What was AIG's income or loss from continuing operations in 2020?",
       "variable": "Net Income",
       "expected": "-5,833",
-      "extracted": "income (loss) from continuing operations $ (6.88) $ 3.74 $ 0.04",
+      "extracted": "5,833",
       "score": 0.0
     },
     {
@@ -67,7 +67,7 @@
       "query": "What was AIG's Life and Retirement adjusted pre-tax income in 2020?",
       "variable": "Net Income",
       "expected": "3,531",
-      "extracted": "$ 1,901 $ 3,533 $",
+      "extracted": "1,901 $ 3,533",
       "score": 0.0
     },
     {
