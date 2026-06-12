@@ -138,7 +138,9 @@ def reciprocal_rank_fusion(rankings, weights=None, k=60):
     return sorted(fused_scores.keys(), key=lambda x: fused_scores[x], reverse=True)
 
 
-def retrieve_context(query, collection, model, chunks, bm25_data, top_k=5, weights=None):
+def retrieve_context(
+    query, collection, model, chunks, bm25_data, top_k=5, weights=None
+):
     """
     Hybrid retrieval: vector search (ChromaDB) + BM25, combined with RRF.
     Returns a list of dicts with chunk_text and section.
