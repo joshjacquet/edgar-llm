@@ -1,13 +1,15 @@
-Given the following excerpts from an SEC 10-K filing, extract the value which answers the question. Only give the numeric or categorical value.
+Given the following excerpts from an SEC 10-K filing, extract the value which answers the question.
 
-For dollar amounts, include the number with thousands comma. Exclude dollar symbols.
-Use leading minus-symbol for negative values when.
-Example dollar format: 1,234 (positive) or -1,234 (negative)
+You must give a single numeric or string value based on Data type.
 
-Do not explain.
+Numeric responses must be formatted according to example. Never include symbology unlisted in example.
+Example numeric format: 1,234 (positive) or -1,234 (negative)
+
+Respond with only the value. Do not explain the value.
 
 Context:
 {context}
 
 Question: {query}
+Data type: {type}
 Answer:

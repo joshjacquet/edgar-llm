@@ -18,9 +18,15 @@ RAG pipeline for extracting structured data from SEC 10-K filings (EDGAR corpus)
 Results are poor. Numeric values passing at 20%.
 Root causes:
 1) **Retrieval**. Low power local embeddings models, combined with limited data cleaning.
-    - Future work: Improve data processing logic to handle tables; Leverage larger or more specialized embeddings models.
+    - Future work includes:
+        - Leverage metadata filters to limit to specific sections if we know where they come from.
+        - Improve data processing logic to handle tables.
+        - Improve split logic to avoid cutting table headers from rows.
+        - Leverage specialized or more powerful embeddings models.
 2) **Instruction following**. Expectations missed when expecting to pull numeric data and receiving sentence instead.
-    - Future work: Improve retrieval for more specific context; tweak prompting; leverage models which support structured outputs.
+    - Future work includes:
+        - Improve retrieval for more specific context.
+        - Leverage models which support structured outputs.
 
 ### Result Table
 | Variable | Match | Percent |
@@ -36,6 +42,8 @@ Root causes:
 pip install -r requirements.txt
 ```
 Models need to be cached locally before running offline. This was done for local Spark issues. Use `hf download <model_name>` to pull them down.
+
+This was due to local issues connecting to network during processing.
 
 ## Running
 From the `src/` directory:

@@ -4,13 +4,13 @@
     "variable": "Total Revenues",
     "expected_value": "49,746",
     "extracted_value": "13,090",
-    "section": "section_7"
+    "section": "section_15"
   },
   {
     "query": "How much total revenue did AIG report for the year ended December 31, 2020?",
     "variable": "Total Revenues",
     "expected_value": "49,746",
-    "extracted_value": "$ 13,090",
+    "extracted_value": "13,090",
     "section": "section_15"
   },
   {
@@ -18,7 +18,7 @@
     "variable": "Total Revenues",
     "expected_value": "49,746",
     "extracted_value": "13,090",
-    "section": "section_7"
+    "section": "section_15"
   },
   {
     "query": "What was AIG's General Insurance net investment income in 2020?",
@@ -31,28 +31,28 @@
     "query": "What was AIG's adjusted pre-tax income in 2020?",
     "variable": "Total Revenues",
     "expected_value": "3,003",
-    "extracted_value": "Adjusted Pre-Tax Income* (in millions)",
+    "extracted_value": "1,234",
     "section": "section_7"
   },
   {
     "query": "What was AIG's net income or net loss in 2020?",
     "variable": "Net Income",
     "expected_value": "-5,973",
-    "extracted_value": "Net Income (Loss) Attributable To AIG Common Shareholders (in millions)",
+    "extracted_value": "-1,234",
     "section": "section_7"
   },
   {
     "query": "What was AIG's net loss attributable to common shareholders in 2020?",
     "variable": "Net Income",
     "expected_value": "-5,973",
-    "extracted_value": "net loss attributable to AIG common shareholders in 2020",
+    "extracted_value": "6,88",
     "section": "section_7"
   },
   {
     "query": "What was AIG's income or loss from continuing operations in 2020?",
     "variable": "Net Income",
     "expected_value": "-5,833",
-    "extracted_value": "income (loss) from continuing operations $ (6.88) $ 3.74 $ 0.04",
+    "extracted_value": "5,833",
     "section": "section_7"
   },
   {
@@ -66,7 +66,7 @@
     "query": "What was AIG's Life and Retirement adjusted pre-tax income in 2020?",
     "variable": "Net Income",
     "expected_value": "3,531",
-    "extracted_value": "$ 1,901 $ 3,533 $",
+    "extracted_value": "1,901 $ 3,533",
     "section": "section_7"
   },
   {
@@ -88,7 +88,7 @@
     "variable": "Stock Exchange",
     "expected_value": "New York Stock Exchange",
     "extracted_value": "New York Stock Exchange",
-    "section": "section_1A"
+    "section": "section_15"
   },
   {
     "query": "What exchange is AIG Common Stock traded on?",
@@ -102,6 +102,6 @@
     "variable": "Stock Exchange",
     "expected_value": "New York Stock Exchange",
     "extracted_value": "New York Stock Exchange",
-    "section": "section_1A"
+    "section": "section_5"
   }
 ]

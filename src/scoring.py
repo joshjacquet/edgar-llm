@@ -1,7 +1,7 @@
 import json
 import re
 import os
-from constants import OUTPUT_PATH
+from constants import OUTPUT_PATH, TARGET_VARIABLES
 
 # Goal: Score extracted values against ground_truth.csv
 
@@ -66,8 +66,6 @@ def score_results(results_path):
     with open(results_path, "r") as f:
         results = json.load(f)
 
-    numeric_vars = ["Total Revenues", "Net Income"]
-    categorical_vars = ["Stock Exchange"]
     scores = []
 
     for result in results:
@@ -75,7 +73,7 @@ def score_results(results_path):
         expected = result["expected_value"]
         extracted = result["extracted_value"]
 
-        if variable in numeric_vars:
+        if variable in TARGET_VARIABLES["numeric"]:
             score = score_numeric(expected, extracted)
         else:
             score = score_categorical(expected, extracted)
